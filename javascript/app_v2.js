@@ -25,7 +25,7 @@ function retrieveData() {
             }
             response.json()
             .then(data => {
-                userData = data.results;
+                let userData = data.results;
                 
                 for (let i = 0; i <userData.length; i++){
                     // Add Variables
@@ -66,10 +66,10 @@ function retrieveData() {
                     
                 }
                 modal();
-            })
+            });
 
-        })
-};
+        });
+}
 
 // --------------------------------------------------------- //
 // -------------- Card Generator Functions ----------------- //
@@ -104,7 +104,7 @@ function generateCard(element, className, parent, id) {
         newCard.setAttribute('id', id);
     }
     parent.appendChild(newCard);    
-};
+}
 
 // Add Content
 function addContent(element, string, parent, className) {
@@ -122,7 +122,7 @@ function addContent(element, string, parent, className) {
     }
     parent.appendChild(newContent);
 
-};
+}
 
 
 // --------------------------------------------------------- //
@@ -132,7 +132,7 @@ function addContent(element, string, parent, className) {
 function modal(){
     createModal();
     openModal(cardId);
-};
+}
 
 // Create Modals
 function createModal(){
@@ -176,14 +176,14 @@ function createModal(){
     leftBtn.onclick = function() {
         navBtnScroll('left');
     };
-};
+}
 
 // Clear Modal Content Function
 function clearModal(el){
     while (el.firstChild) {
         el.removeChild(el.firstChild);
     }
-};
+}
 
 // open Modal
 function openModal(cardId){
@@ -206,9 +206,9 @@ function openModal(cardId){
 
             // Display Modal
             newModal.style.display = 'block';
-        }
+        };
     }
-};
+}
 
 // Populate Modal
 
@@ -220,7 +220,7 @@ function populateModal(modalUser) {
     addContent('P', modalUser.userPhone, modalBottom);
     addContent('P', modalUser.userAddress, modalBottom);
     addContent('P', modalUser.userDOB, modalBottom);
-};
+}
 
 
 
@@ -252,7 +252,7 @@ function navBtnScroll(direction) {
     modalUser = modalUser[0];
     populateModal(modalUser);
 
-};
+}
 
 // --------------------------------------------------------- //
 // ------------------- Search Function --------------------- //
@@ -275,7 +275,7 @@ function searchFunction() {
             cardId[i].style.display = 'none';
         }
     }
-};
+}
 
 // --------------------------------------------------------- //
 // ------------------ Helper Functions --------------------- //
@@ -285,13 +285,13 @@ function searchFunction() {
 function userNameConcat(first, last){
     let fullName = first + " " + last;
     return fullName;
-};
+}
 
 // Concat address items to make full address
 function userAddressConcat(street, city, postcode){
     let fullAddress = street + ", " + city + ", " + postcode;
     return fullAddress;
-};
+}
 
 // Correctly format DOB
 function userDOBFormat(DOB){
@@ -301,24 +301,18 @@ function userDOBFormat(DOB){
     let year = twoIntegars(rawDate.getYear());
     let DOBFormat = "DOB: " + date + "/" + month + "/" + year;
     return DOBFormat;
-};
+}
 
 // Format to two integars
 function twoIntegars(int) {
     if(int === 0) {
-        return ("01")
+        return ("01");
     } else {
         return ("0" + int).slice(-2);
-    };   
-};
-
-
-//
-
-function app(){
-    retrieveData();
-
-    
+    }
 }
 
-app();
+
+// Run Program
+
+retrieveData();
